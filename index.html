@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria</title>
+    <style>
+        body {
+            background: url('BG.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(33vw, 0vh)); /* Proporcjonalne kolumny */
+            gap: 10px;
+            max-width: 100vw; /* Zajmowanie 100% szerokości ekranu */
+            width: 100%;
+            padding: 10px;
+        }
+        .photo {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1 / 1; /* Ustawienie proporcji 1:1 dla zdjęć */
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ustawienie proporcji zdjęcia */
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery" id="gallery"></div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const gallery = document.getElementById("gallery");
+            
+            async function fetchImages() {
+                // Lista folderów
+                let folders = [
+                    "2 One Peace Pants", "3 One Peace Pants", "4 One Peace Pants", "5 Dusty Rose", 
+                    "6 Safari Mesh Pants", "7 Rusty Mesh Pants", "8 Angel Guardian Pants", 
+                    "9 Rusty Garden Pants", "10 Dusty Plate Pants", "11 Dusty Plate Pants", 
+                    "12 Industrial Mesh Pants", "13 Anarchy Pants"
+                ];
+                
+                let images = folders.map(folder => {
+                    let folderPath = `Drop/${folder}`;
+                    return [
+                        `${folderPath}/${folder.split(' ')[0]} First.png`,
+                        `${folderPath}/${folder.split(' ')[0]} Second.png`,
+                        `${folderPath}/${folder.split(' ')[0]} SizeChart.png`
+                    ];
+                });
+
+                images.forEach(set => {
+                    const photoDiv = document.createElement("div");
+                    photoDiv.classList.add("photo");
+                    
+                    set.forEach((src, index) => {
+                        const img = document.createElement("img");
+                        img.src = src;
+                        img.style.opacity = index === 0 ? 1 : 0;
+                        photoDiv.appendChild(img);
+                    });
+
+                    let index = 0;
+
+                    // Funkcja zmieniająca zdjęcie po kliknięciu
+                    photoDiv.addEventListener("click", function() {
+                        const imgs = photoDiv.querySelectorAll("img");
+                        imgs[index].style.opacity = 0; // Ukryj bieżące zdjęcie
+                        index = (index + 1) % imgs.length; // Zwiększ indeks zdjęcia
+                        imgs[index].style.opacity = 1; // Pokaż następne zdjęcie
+                    });
+
+                    gallery.appendChild(photoDiv);
+                });
+            }
+
+            fetchImages();
+        });
+    </script>
+</body>
+</html>

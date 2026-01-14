@@ -51,22 +51,46 @@
             const gallery = document.getElementById("gallery");
             
             async function fetchImages() {
-                // Lista folderów
+                // Lista folderów odpowiadających produktom w katalogu Items_Dataset
                 let folders = [
-                    "2 One Peace Pants", "3 One Peace Pants", "4 One Peace Pants", "5 Dusty Rose", 
-                    "6 Safari Mesh Pants", "7 Rusty Mesh Pants", "8 Angel Guardian Pants", 
-                    "9 Rusty Garden Pants", "10 Dusty Plate Pants", "11 Dusty Plate Pants", 
-                    "12 Industrial Mesh Pants", "13 Anarchy Pants", "14 Rusty Oil Pants",
-                    "15 Rusty Oil Pants", "16 One Peace Pants", "17 Rusty Oil Pants",
-                    "18 Rusty Oil Pants"
+                    "1 One Peace Pants",
+                    "2 One Peace Pants",
+                    "3 One Peace Pants",
+                    "4 One Peace Pants",
+                    "5 Dusty Rose",
+                    "6 Safari Mesh Pants",
+                    "7 Rusty Mesh Pants",
+                    "8 Angel Guardian Pants",
+                    "9 Rusty Garden Pants",
+                    "10 Dusty Plate Pants",
+                    "11 Dusty Plate Pants",
+                    "12 Industrial Mesh Pants",
+                    "13 Anarchy Pants",
+                    "14 Rusty Oil Pants",
+                    "15 Rusty Oil Pants",
+                    "16 One Peace Pants",
+                    "17 Rusty Oil Pants",
+                    "18 Rusty Oil Pants",
+                    "19 Kanada Berserk Pants",
+                    "20 Rusty Light Pants",
+                    "21 Rusty Light Pants",
+                    "22 Rusty Oil Pants",
+                    "23 Rusty Oil Pants",
+                    "25 Sandy Oil Pants",
+                    "26 Sandy Oil Pants",
+                    "27 Industrial Mesh Pants",
+                    "28 Industrial Mesh Pants",
+                    "39 Rusty Oil Pants",
+                    "40 Industrial Mesh Pants",
+                    "41 Industrial Mesh Pants"
                 ];
                 
                 let images = folders.map(folder => {
-                    let folderPath = `Drop/${folder}`;
+                    let folderPath = `Items_Dataset/${folder}`;
                     return [
-                        `${folderPath}/${folder.split(' ')[0]} First.webp`,
-                        `${folderPath}/${folder.split(' ')[0]} Second.webp`,
-                        `${folderPath}/${folder.split(' ')[0]} SizeChart.webp`
+                        `${folderPath}/First.webp`,
+                        `${folderPath}/Second.webp`,
+                        `${folderPath}/SizeChart.webp`
                     ];
                 });
 
